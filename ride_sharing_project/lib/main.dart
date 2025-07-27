@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'welcome_screen.dart';
-import 'phone_auth_screen.dart';
-import 'otp_screen.dart';
-import 'permission_screen.dart';
-import 'sign_up.dart';
+import 'pages/welcome_screen.dart';
+// import 'pages/phone_auth_screen.dart';
+// import 'pages/otp_screen.dart';
+// import 'pages/permission_screen.dart';
+// import 'pages/sign_up.dart';
 
 void main() {
   runApp(const MyApp());

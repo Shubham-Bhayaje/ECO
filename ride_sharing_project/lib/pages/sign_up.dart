@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'permission_screen.dart';
-import 'otp_screen.dart';
+// import 'otp_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -16,8 +16,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool get isFormValid =>
       firstNameController.text.isNotEmpty &&
-          lastNameController.text.isNotEmpty &&
-          emailController.text.isNotEmpty;
+      lastNameController.text.isNotEmpty &&
+      emailController.text.isNotEmpty;
 
   void _goToPermissionsScreen() {
     Navigator.pushReplacement(
@@ -104,8 +104,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ElevatedButton(
                 onPressed: isFormValid ? _goToPermissionsScreen : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                  isFormValid ? Colors.orange : Colors.orange.shade200,
+                  backgroundColor: isFormValid
+                      ? Colors.orange
+                      : Colors.orange.shade200,
                   minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -131,15 +132,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               // Google Sign-in Button
               OutlinedButton.icon(
-                onPressed: _goToPermissionsScreen, // Navigate after Google sign-in
+                onPressed: _goToPermissionsScreen,
                 icon: Image.asset('assets/google_logo.png', height: 24),
-                label: const Text("Sign up with Gmail"),
+                label: const Text(
+                  "Sign up with Gmail",
+                  style: TextStyle(fontSize: 16), // Consistent text size
+                ),
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
-                  side: const BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey, width: 1.5),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                 ),
               ),
             ],
