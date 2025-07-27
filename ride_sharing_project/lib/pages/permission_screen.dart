@@ -6,7 +6,7 @@ class PermissionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF4E6), // Light beige
+      backgroundColor: const Color.fromARGB(255, 255, 247, 236), // Light beige
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -14,9 +14,19 @@ class PermissionsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Illustration Image
-              Image.asset(
-                'assets/permission_illustration.png', // Replace with your asset
-                height: 200,
+              Container(
+                height: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white.withOpacity(0.5),
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.location_on,
+                    size: 120,
+                    color: Colors.redAccent.withOpacity(0.7),
+                  ),
+                ),
               ),
               const SizedBox(height: 30),
 
@@ -24,8 +34,9 @@ class PermissionsScreen extends StatelessWidget {
               const Text(
                 "Welcome to EcoRide",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 24, 
                   fontWeight: FontWeight.bold,
+                  color: Color(0xFF2D2D2D),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -33,49 +44,136 @@ class PermissionsScreen extends StatelessWidget {
 
               // Subtitle
               const Text(
-                "To get you riding faster, we’ll need a couple of quick permissions.",
+                "To get you riding faster, we'll need a couple of quick permissions.",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 16, 
                   color: Colors.black54,
+                  height: 1.4,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
 
-              // Bullet Points
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text("• Location (find nearby rides & pickup points)",
-                      style: TextStyle(fontSize: 14)),
-                  SizedBox(height: 8),
-                  Text("• Phone (connect with drivers & secure account)",
-                      style: TextStyle(fontSize: 14)),
-                ],
+              // Permission Cards
+              _buildPermissionCard(
+                icon: Icons.location_on,
+                title: "Location Access",
+                description: "Find nearby rides & pickup points",
+              ),
+              const SizedBox(height: 12),
+              _buildPermissionCard(
+                icon: Icons.phone,
+                title: "Phone Access",
+                description: "Connect with drivers & secure account",
               ),
 
               const SizedBox(height: 40),
 
               // Allow Button
-              ElevatedButton(
-                onPressed: () {
-                  // Ask for permissions here
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle permission request
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    foregroundColor: Colors.white,
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    "Allow Permissions",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
+              ),
+              
+              const SizedBox(height: 16),
+              
+              // Skip button
+              TextButton(
+                onPressed: () {
+                  // Handle skip
+                },
                 child: const Text(
-                  "Allow",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                  "Skip for now",
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 14,
+                  ),
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildPermissionCard({
+    required IconData icon,
+    required String title,
+    required String description,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.redAccent.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(
+              icon,
+              color: Colors.redAccent,
+              size: 24,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF2D2D2D),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  description,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black.withOpacity(0.6),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
