@@ -19,23 +19,24 @@ class WelcomeScreen extends StatelessWidget {
               // Brand Mark
               Center(
                 child: Container(
-                  width: 72,
-                  height: 72,
+                  width: 80,
+                  height: 80,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF059669),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(22),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF059669).withOpacity(0.25),
-                        blurRadius: 16,
+                        color: const Color(0xFF059669).withOpacity(0.22),
+                        blurRadius: 18,
                         offset: const Offset(0, 6),
                       ),
                     ],
                   ),
-                  child: const Icon(
-                    Icons.directions_car_filled_rounded,
-                    color: Colors.white,
-                    size: 38,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(22),
+                    child: Image.asset(
+                      'assets/app_logo.png',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
